@@ -1,7 +1,6 @@
-input
-output
-midi
-output.wav
-output.mid
+__pycache__
 SGM-v2.01-NicePianosGuitarsBass-V1.2.sf2
 .DS_Store
+sounds
+output_tunes
+weights.pth
