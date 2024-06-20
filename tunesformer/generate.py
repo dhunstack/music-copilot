@@ -8,10 +8,11 @@ import argparse
 import os
 from tqdm import tqdm
 import requests
+import subprocess
 
 def get_args(parser):
 
-    parser.add_argument('-num_tunes', type=int, default=3, help='the number of independently computed returned tunes')
+    parser.add_argument('-num_tunes', type=int, default=1, help='the number of independently computed returned tunes')
     parser.add_argument('-max_patch', type=int, default=128, help='integer to define the maximum length in tokens of each tune')
     parser.add_argument('-top_p', type=float, default=0.8, help='float to define the tokens that are within the sample operation of text generation')
     parser.add_argument('-top_k', type=int, default=8, help='integer to define the tokens that are within the sample operation of text generation')
@@ -142,8 +143,18 @@ def generate_abc(args):
 
     print("Generation time: {:.2f} seconds".format(time.time()-start_time))
     timestamp = time.strftime("%a_%d_%b_%Y_%H_%M_%S", time.localtime()) 
-    with open('output_tunes/'+timestamp+'.abc', 'w') as f:
+    file_path = 'output_tunes/'+timestamp+'.abc'
+    with open(file_path, 'w') as f:
         f.write(tunes)
+    # Command to copy the generated ABC notation to sounds_current folder
+    command = [
+        'cp',
+        f'{file_path}',
+        '../sounds_current/placeholder.abc'
+    ]
+
+    # Run the command
+    subprocess.run(command)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

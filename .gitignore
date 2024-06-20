@@ -4,3 +4,9 @@ SGM-v2.01-NicePianosGuitarsBass-V1.2.sf2
 sounds
 output_tunes
 weights.pth
+main_old.py
+test.ipynb
+__init__.py
+sounds_current
+sounds_permanent
+prompt-collection.txt
