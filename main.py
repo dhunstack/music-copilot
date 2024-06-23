@@ -2,7 +2,15 @@ import streamlit as st
 import music21 as m21
 import tempfile
 from abcsonification.sonifyabc import sonify_all_files
-import os, subprocess
+import os
+import subprocess
+from enum import Enum, IntEnum
+from pydantic import BaseModel, ValidationError
+
+
+class KeyEnum(str, Enum):
+    Aminor = 'Amin'
+    banana = 'banana'
 
 
 def get_transformer_prompt():
@@ -39,10 +47,13 @@ if ["inter_prompt", "abc_string", "old_score"]  not in st.session_state:
     st.session_state.old_score = []
 
 # Main page Headers
-st.title("🔤 ABC Notation Sheet Music Player")
+st.title("🔤 Irish Music Generator")
+
 
 
 # Side Bar
+nl_title = "Make me a song with three sections of bar length 4 each with sections being somewhat similar to each other. The metre of the song should be 4/4 and the key Dminor."
+nl_prompt_box = st.sidebar.text_area("NL Prompt:", value=nl_title, height=300)
 trans_prompt_box = st.sidebar.text_area("Transformer Prompt:", value=st.session_state.trans_prompt, height=300)
 st.session_state.trans_prompt = trans_prompt_box
 generate_music_button = st.sidebar.button("Generate Music", on_click=run_transformer)

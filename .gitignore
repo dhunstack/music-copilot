@@ -10,3 +10,5 @@ __init__.py
 sounds_current
 sounds_permanent
 prompt-collection.txt
+material_demo
+.env
