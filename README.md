@@ -28,10 +28,8 @@ music-copilot/
 
 ## Prerequisites
 
+- Conda (Miniconda or Anaconda)
 - Python 3.x
-- Streamlit
-- music21
-- Additional dependencies (see requirements.txt)
 - SF2 soundfont file
 
 ## Installation
@@ -42,9 +40,10 @@ git clone [repository-url]
 cd music-copilot
 ```
 
-2. Install dependencies:
+2. Create and activate the conda environment:
 ```bash
-pip install -r requirements.txt
+conda env create -f musiccopilot.yml
+conda activate musiccopilot
 ```
 
 ## Usage
